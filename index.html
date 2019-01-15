@@ -5,13 +5,105 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
+    <!-- Style Links (Reset.css, Bootstrap, Style.css)-->
+    <link rel="stylesheet" href="assets/css/reset.css"> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
 
-    <title>Hello, world!</title>
+    <title>Concerts & Cuisine</title>
+
   </head>
   <body>
-    <h1>Hello, world!</h1>
+  <!--Jumbotron-->
+    <div class="jumbotron">
+        <h1 class="display-4 text-center">Concerts & Cuisine</h1>
+        <hr class="my-4">  
+        <p class="lead text-center">Tagline Here</p>
+    </div>
+
+    <div class="container"> 
+
+        <!--Near Me Button-->
+        <div class="nearMe">
+          <button class="btn btn-outline-success my-2 my-sm-0 col-md-6 offset-3" type="submit" id="nearMeButton">Find a Concert Near Me</button>
+        </div>
+
+        <!--Search Form and Submit Button-->
+        <form class="form-inline my-2 my-lg-0 col-md-6 offset-4" id="searchForm">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search by Zipcode" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchButton">Search</button>
+        </form>
+
+        <!--Main Content Div-->
+        <div class="card" id="contentDiv">
+        
+
+              <!--Chosen Options Card-->
+              <div class="col-md-4 offset-8">
+              <div class="card" style="width: 18rem">
+                  <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                  <div class="card-body">
+                    <h5 class="card-title text-center">Your Choices:</h5>
+                    <p class="card-text"></p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Concert Choice</li>
+                    <li class="list-group-item">Restaurant Choice</li>
+                  </ul>
+                  <div class="card-body">
+                    <a href="#" target="_blank" class="card-link">Buy Tickets</a>
+                    <a href="#" target="_blank" class="card-link">Make Reservations</a><br>
+                    <a href="#" target="_blank" class="card-link">Add to Calendar</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+         </div>
+        </div>
+
+    </div>
+      
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
