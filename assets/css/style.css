@@ -12,3 +12,8 @@
 .card {
     margin: 20px;
 }
+
+#map2, #map, #map3, #map4 {
+    widows:350px;
+    height:350px;
+}
