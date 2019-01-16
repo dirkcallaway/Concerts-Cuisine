@@ -1,39 +1,54 @@
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Style Links (Reset.css, Materialize, Style.css)-->
-    <link rel="stylesheet" href="assets/css/reset.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Concerts & Cuisine</title>
-
-  </head>
-  <body>
+  <!-- Style Links (Reset.css, Materialize, FontAwesome, Style.css)-->
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css">
 
 
-<!-- Collapsible Div for Concerts/Restaurants/Itinerary-->
-  <ul class="collapsible">
-        <li>
-          <div class="collapsible-header"><i class="material-icons"></i>First</div>
-          <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-        <li>
-          <div class="collapsible-header"><i class="material-icons"></i>Second</div>
-          <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-        <li>
-          <div class="collapsible-header"><i class="material-icons"></i>Third</div>
-          <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
+  <title>Concerts & Cuisine</title>
+
+</head>
+
+<body>
+
+
+  <!--NavBar-->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Concerts & Cuisine</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Are</a></li>
+        <li><a href="badges.html">These</a></li>
+        <li><a href="collapsible.html">Needed?</a></li>
       </ul>
-            
+    </div>
+  </nav>
+
+  <!-- Collapsible Div for Concerts/Restaurants/Itinerary-->
+  <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="fas fa-guitar"></i>Concerts</div>
+      <div class="collapsible-body"><span>Populate nearby concerts here.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="fas fa-utensils"></i>Restaurants</div>
+      <div class="collapsible-body"><span>Concerts near the venue will be displayed here.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="fas fa-clipboard-list"></i>Itinerary</div>
+      <div class="collapsible-body"><span>This page will display the concert and restaurant you chose with ticket
+          information and options for reservations.</span></div>
+    </li>
+  </ul>
 
 
 
@@ -41,26 +56,27 @@
 
 
 
-    <!-- Optional JavaScript -->
 
-    <!-- jQuery first, then Popper.js, then Materialize -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Optional JavaScript -->
 
-    <script>
-            //      document.addEventListener('DOMContentLoaded', function() {
-            //     var elems = document.querySelectorAll('.collapsible');
-            //     var instances = M.Collapsible.init(elems, options);
-            //   });
-            
-              // Or with jQuery
-            
-              $(document).ready(function(){
-                $('.collapsible').collapsible();
-              });
-                    
-            
-            </script>
+  <!-- jQuery first, then Popper.js, then Materialize -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  </body>
+  <script>
+    //      document.addEventListener('DOMContentLoaded', function() {
+    //     var elems = document.querySelectorAll('.collapsible');
+    //     var instances = M.Collapsible.init(elems, options);
+    //   });
+
+    // Or with jQuery
+
+    $(document).ready(function () {
+      $('.collapsible').collapsible();
+    });
+  </script>
+
+</body>
+
 </html>
