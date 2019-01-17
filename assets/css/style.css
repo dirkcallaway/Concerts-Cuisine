@@ -1,19 +1,56 @@
 /* Concerts & Cuisine Stylesheet */
 
-.nearMe {
+/* .nearMe {
     padding: 10px;
     margin-bottom: 10px;
 }
 
 #nearMeButton {
     padding: 10px;
+} */
+
+body {
+    font-family: 'Montserrat', sans-serif;
 }
 
-.card {
-    margin: 20px;
+#nav-wrapper {
+    font-family: 'Montserrat', sans-serif;
 }
 
 #map2, #map, #map3, #map4 {
     widows:350px;
     height:350px;
 }
+
+.collapsible {
+    margin-top: 20px;
+}
+
+.collapsible-header {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+
+.collapsible-body {
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+}
+
+p {
+    font-family: 'Raleway', sans-serif;
+    margin: 20px;
+    /*remove margin once final*/
+}
+
+.card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+
+#choicesCard {
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+}
+
