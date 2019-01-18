@@ -30,59 +30,85 @@
         <li><a href="sass.html">Are</a></li>
         <li><a href="badges.html">These</a></li>
         <li><a href="collapsible.html">Needed?</a></li>
-      <!--Probably not but let's keep them for now -K -->
+        <!--Probably not but let's keep them for now -K -->
       </ul>
     </div>
   </nav>
 
-<div class="row">
-  <!-- Collapsible Div for Concerts/Restaurants/Itinerary-->
-  <div class="col s12 m9">
-  <ul class="collapsible">
-    <li>
-      <div class="collapsible-header"><i class="fas fa-guitar"></i>CONCERTS</div>
-      <div class="collapsible-body"><span>Populate nearby concerts here.</span></div>
-       <!-- "Add Concert" button?  Or do we want to just be able to click on the div? -K -->
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="fas fa-utensils"></i>RESTAURANTS</div>
-      <div class="collapsible-body"><span>Concerts near the venue will be displayed here.</span></div>
-      <!-- "Add restaurant button?  Or do we want to just be able to click on the div? -K -->
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="fas fa-clipboard-list"></i>ITINERARY</div>
-      <div class="collapsible-body"><span>This page will display the concert and restaurant you chose with ticket
-          information and options for reservations.
-          <p>Lorem ipsum dolor amet small batch scenester aute schlitz, flexitarian neutra crucifix fixie 
-              selvage. Pug vape elit taiyaki jean shorts helvetica minim lorem taxidermy eiusmod meggings photo booth fixie live-edge 
-              salvia. Hella tacos taxidermy, disrupt salvia pour-over sunt occupy fam lomo vinyl four dollar toast. Wolf scenester lorem 
-              in ugh af craft beer street art vice. Pok pok pariatur chillwave meditation echo park, adipisicing fanny pack PBR&B nulla 
-              consequat. Pabst stumptown photo booth fam brunch plaid sriracha chicharrones irony ad meggings neutra portland.</p>
-            <a class="waves-effect waves-light btn" id="buyTix">Buy Tickets</a>
-                <!--Link to ticket buying using Songkick API-->
-            <a class="waves-effect waves-light btn" id="makeRes">Make Reservations</a>
-                <!--Link to restaurant or reservations system using OpenTable API or similar-->
-        </span></div>
-    </li>
-  </ul>
-</div>
+  <div class="row">
+    <div class="col s12 m4 center offset-s6 offset-m4">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Search for nearby concerts.</span>
+          <div class="row mb-0">
+            <form class="col s12 offset-s4">
+              <div class="row mb-0">
+                <div class="input-field col s4">
+                  <input placeholder="ZipCode" id="zip" type="text" class="validate">
+                </div>
+            </form>
+          </div>
+        </div>
+        <div class="card-action pb-0">
+          <button class="btn waves-effect waves-light" type="submit" name="action" id="submit"><i class="fas fa-globe"></i> Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Collapsible Div for Concerts/Restaurants/Itinerary-->
+    <div class="col s12 m9">
+      <ul class="collapsible">
+        <li>
+          <div class="collapsible-header"><i class="fas fa-guitar"></i>CONCERTS</div>
+          <div class="collapsible-body"><span>Populate nearby concerts here.</span></div>
+          <!-- "Add Concert" button?  Or do we want to just be able to click on the div? -K -->
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="fas fa-utensils"></i>RESTAURANTS</div>
+          <div class="collapsible-body"><span>Concerts near the venue will be displayed here.</span></div>
+          <!-- "Add restaurant button?  Or do we want to just be able to click on the div? -K -->
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="fas fa-clipboard-list"></i>ITINERARY</div>
+          <div class="collapsible-body"><span>This page will display the concert and restaurant you chose with ticket
+              information and options for reservations.
+              <p>Lorem ipsum dolor amet small batch scenester aute schlitz, flexitarian neutra crucifix fixie
+                selvage. Pug vape elit taiyaki jean shorts helvetica minim lorem taxidermy eiusmod meggings photo booth
+                fixie live-edge
+                salvia. Hella tacos taxidermy, disrupt salvia pour-over sunt occupy fam lomo vinyl four dollar toast.
+                Wolf scenester lorem
+                in ugh af craft beer street art vice. Pok pok pariatur chillwave meditation echo park, adipisicing
+                fanny pack PBR&B nulla
+                consequat. Pabst stumptown photo booth fam brunch plaid sriracha chicharrones irony ad meggings neutra
+                portland.</p>
+              <a class="waves-effect waves-light btn" id="buyTix">Buy Tickets</a>
+              <!--Link to ticket buying using Songkick API-->
+              <a class="waves-effect waves-light btn" id="makeRes">Make Reservations</a>
+              <!--Link to restaurant or reservations system using OpenTable API or similar-->
+            </span></div>
+        </li>
+      </ul>
+    </div>
 
 
 
- <!--Your Choices Card-->
+    <!--Your Choices Card-->
     <!--Not sure this card is needed.  Let's discuss -K -->
     <div class="col s12 m3">
-        <div class="card blue-grey darken-1">
-           <div class="card-content white-text" id="choicesCard">
-             <span class="card-title">YOUR CHOICES:</span>
-             <!--Work with flow-text - font seems a little big RN-->
-             <p>You haven't chosen anything yet!</p>
-             <!--populate this dynamically with concert and/or restaurant choices-->
-           </div>
-         </div>
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text" id="choicesCard">
+          <span class="card-title">YOUR CHOICES:</span>
+          <!--Work with flow-text - font seems a little big RN-->
+          <p>You haven't chosen anything yet!</p>
+          <!--populate this dynamically with concert and/or restaurant choices-->
+        </div>
       </div>
-            
-</div>
+    </div>
+
+  </div>
 
 
   <!-- Optional JavaScript -->
@@ -94,8 +120,8 @@
   <script>
     //      document.addEventListener('DOMContentLoaded', function() {
     //     var elems = document.querySelectorAll('.collapsible');
-      //     var instances = M.Collapsible.init(elems, options);
-      //   });
+    //     var instances = M.Collapsible.init(elems, options);
+    //   });
 
     // Or with jQuery
 
