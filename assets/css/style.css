@@ -54,3 +54,10 @@ p {
     margin-top: 20px;
 }
 
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.pb-0 {
+    padding-bottom: 0;
+}
