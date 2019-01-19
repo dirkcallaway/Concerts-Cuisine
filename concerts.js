@@ -15,6 +15,6 @@ var populateConcerts = function () {
         concertCard.append(cardContent);
         //Pushes finished card into the HTML
         $("#concerts").append(concertCard);
-        $("#concerts").addClass("focus");
+        $("#concerts").addClass("active");
     };
 }
