@@ -34,6 +34,7 @@ $("#submit").on("click", function () {
     $("#zip").val("");
     //Calls the MapQuest API
     ajaxCall();
+    populateConcerts();
 });
 
 
