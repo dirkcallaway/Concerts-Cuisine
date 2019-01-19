@@ -13,7 +13,7 @@ var loadMap = function () {
 };
 
 //Geocoding ----------------------------------------------------------------------------------------------
-var mapQueryUrl = "http://www.mapquestapi.com/geocoding/v1/address?";
+var mapQueryUrl = "https://www.mapquestapi.com/geocoding/v1/address?";
 var mapSearchObject = {
     key: "h1AaSPSUGvuBlInfmGZQsZYqflUTxUri",
     location: ""
