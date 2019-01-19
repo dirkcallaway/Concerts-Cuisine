@@ -1,4 +1,6 @@
+
 //Loading Maps ------------------------------------------------------------------------------------------
+
 var loadMap = function () {
     L.mapquest.key = 'h1AaSPSUGvuBlInfmGZQsZYqflUTxUri';
 
@@ -36,7 +38,8 @@ var ajaxCall = function () {
 
 //Calls -----------------------------------------------------------------------------------------------
 
-//Submit Button Click... 
+
+//Submit Button Click...
 $("#submit").on("click", function () {
     //Grabs Value from input box
     var zipCode = $("#zip").val().trim();
