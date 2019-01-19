@@ -1,4 +1,6 @@
-//Loading Maps
+
+//Loading Maps ------------------------------------------------------------------------------------------
+
 var loadMap = function () {
     L.mapquest.key = 'h1AaSPSUGvuBlInfmGZQsZYqflUTxUri';
 
@@ -10,7 +12,7 @@ var loadMap = function () {
 
 };
 
-//Geocoding
+//Geocoding ----------------------------------------------------------------------------------------------
 var mapQueryUrl = "http://www.mapquestapi.com/geocoding/v1/address?";
 var mapSearchObject = {
     key: "h1AaSPSUGvuBlInfmGZQsZYqflUTxUri",
@@ -29,8 +31,13 @@ var ajaxCall = function () {
             console.log(response);
             lat = response.results[0].locations[0].latLng.lat;
             lon = response.results[0].locations[0].latLng.lng;
+            populateConcerts();
         });
 };
+
+
+//Calls -----------------------------------------------------------------------------------------------
+
 
 //Submit Button Click...
 $("#submit").on("click", function () {
