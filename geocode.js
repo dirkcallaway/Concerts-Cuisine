@@ -15,7 +15,7 @@ var ajaxCall = function () {
         });
 };
 
-//Submit Button Click eventually...
+//Submit Button Click...
 $("#submit").on("click", function () {
     //Grabs Value from input box
     var zipCode = $("#zip").val().trim();
