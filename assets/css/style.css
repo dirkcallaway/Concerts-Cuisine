@@ -1,20 +1,30 @@
 /* Concerts & Cuisine Stylesheet */
 
-/* .nearMe {
-    padding: 10px;
-    margin-bottom: 10px;
-}
 
-#nearMeButton {
-    padding: 10px;
-} */
 
 body {
     font-family: 'Montserrat', sans-serif;
+    background-color: #6200ea;
+    color: white;
 }
 
-#nav-wrapper {
+nav {
+    height: 110px;
+}
+
+.nav-wrapper {
     font-family: 'Montserrat', sans-serif;
+    background-color: #0a00b6;
+}
+
+/* .brand-logo {
+    margin-bottom: 10px;
+    padding: 50px;
+} */
+
+img {
+    margin-top: 10px;
+    margin-left: 20px;
 }
 
 #map2, #map, #map3, #map4 {
@@ -24,16 +34,27 @@ body {
 
 .collapsible {
     margin-top: 20px;
+    border: none;
 }
 
 .collapsible-header {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
+    background-color: #0a00b6;
+    color: white;
+    border-bottom:1px solid white;
 }
 
 .collapsible-body {
     font-family: 'Raleway', sans-serif;
     font-size: 18px;
+    background-color:lightgray;
+    color: black;
+    border: none;
+}
+
+.fas {
+    color: #76ff03;
 }
 
 p {
@@ -42,22 +63,52 @@ p {
     /*remove margin once final*/
 }
 
+.card {
+    font-family: 'Raleway', sans-serif;
+    margin-top: 30px;
+    padding: 0px;
+    height: 100px;
+}
+
+.card-content {
+    margin: 0px;
+    padding: 0px;
+}
+
 .card-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
 }
 
-#choicesCard {
-    font-family: 'Raleway', sans-serif;
-    font-size: 18px;
-    text-align: center;
-    margin-top: 20px;
+#search {
+    background-color: #0a00b6;
+    color: white;
 }
 
-.mb-0 {
+.zip {
+    color: white;
+}
+
+.input-field {
+   margin-top: 0px;
+}
+
+#submit {
+    background-color: #9d46ff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+
+/* .mb-0 {
     margin-bottom: 0;
 }
 
 .pb-0 {
     padding-bottom: 0;
-}
+} */
+
+ /* !! don't think we need these if they're set inline to 0 !! */
+
+
