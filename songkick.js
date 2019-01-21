@@ -14,20 +14,22 @@
 //Songkick API variables
 var apiKey = "N3NwIQTcgTiC3jVE";
 var metroAreaId = "";
-var lat = 39.7392
-var lon = -104.9903
+var lat = 39.7392;
+var lon = -104.9903; //default to Denver
 
 var concertDetails = "";
 var concertCity = "";
 var concertLink = "";
 
-var concertQueryUrl = "https://api.songkick.com/api/3.0/search/locations.json?location=geo:" + lat + "," + lon + "&apikey=" + apiKey
-console.log(concertQueryUrl);
-
 
 $(document).ready(function () {
 
-    $.ajax({
+    var populateConcerts = function() {
+    
+        var concertQueryUrl = "https://api.songkick.com/api/3.0/search/locations.json?location=geo:" + lat + "," + lon + "&apikey=" + apiKey
+        console.log(concertQueryUrl);
+    
+        $.ajax({
             url: concertQueryUrl,
             method: "GET"
         })
@@ -89,4 +91,5 @@ $(document).ready(function () {
 
         });
 
+};
 });
