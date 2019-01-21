@@ -79,6 +79,7 @@ $(document).ready(function () {
                         //Pushes finished card into the HTML
                         $("#concerts").append(concertCard);
                         $("#concerts").addClass("focus");
+                        $("#concerts").addClass("active");
                         //Need to remove old search when new zip submitted 
 
 
