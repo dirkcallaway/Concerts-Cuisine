@@ -67,7 +67,7 @@ p {
     font-family: 'Raleway', sans-serif;
     margin-top: 30px;
     padding: 0px;
-    height: 100px;
+    /* height: 100px; */
 }
 
 .card-content {
@@ -83,6 +83,7 @@ p {
 #search {
     background-color: #0a00b6;
     color: white;
+    height: 100px;
 }
 
 .zip {
