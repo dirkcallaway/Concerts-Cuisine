@@ -21,6 +21,8 @@ var loadMap = function () {
 
 };
 
+//Concerts -----------------------------------------------------------------------------------------------
+
 // Populate Concert function calls the SongKick API and then builds the concert cards into the HTML
 var populateConcerts = function () {
 
@@ -90,6 +92,74 @@ var populateConcerts = function () {
 
 };
 
+//Restaurants --------------------------------------------------------------------------------------------
+
+//Populate Restaurant function calls the Zomato API and then buildes the restaurant cards into the HTHML
+var populateRestaurants = function() {
+
+    //restaurant query url
+    var foodQueryURL = "https://developers.zomato.com/api/v2.1/geocode?lat=" + lat + "&lon=" + lon + "&count=10";
+    
+    //create ajax call
+    $.ajax({
+        url: foodQueryURL,
+
+        //use headers from Curl request to create Zomato-acceptable call format
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Accept", "application/json"),
+            xhr.setRequestHeader("user-key", "18e1e3853dbc10b73621abe274b59639")
+        }, success: function(data) {},
+
+        method: "GET"
+    })
+
+    .then(function(response) {
+         
+        //for loop to show data and create cards for each restaurant 
+        for (var i = 0; i < response.nearby_restaurants.length; i++) {
+            
+            //turn data into an object for easier reference
+            var restaurantData = {
+                name: response.nearby_restaurants[i].restaurant.name,
+                address: response.nearby_restaurants[i].restaurant.location.address,
+                type: response.nearby_restaurants[i].restaurant.cuisines,
+                price: response.nearby_restaurants[i].restaurant.price_range,
+                menu: response.nearby_restaurants[i].restaurant.menu_url,
+                link: response.nearby_restaurants[i].restaurant.url,
+                rating: response.nearby_restaurants[i].restaurant.user_rating.aggregate_rating,
+                ratingText: response.nearby_restaurants[i].restaurant.user_rating.rating_text,
+            }
+
+            console.log(restaurantData);
+         
+            //Retrieves restaurant data from object to populate card
+            var restCard = $("<div class='card deep-purple lighten-1 concert-click'>");
+            var restCardContent = $("<div class='card-content white-text'>");
+            var restCardTitle = $("<span class='card-title'>").text(" " + restaurantData.name); 
+            var restAddress = $("<p>").text("Address: " + restaurantData.address); 
+            var restType = $("<p>").text("" + restaurantData.type); 
+              // var restMenuLink = $("<>").html("" + restaurantData.menu); //not essential RN but will make work if/when I can
+              // var restPrice = $("<p>").text("" + restaurantData.price); //not essential, would like to format differently
+            var restRating = $("<p>").text("Customer Rating: " + restaurantData.rating); 
+
+
+            //Puts the card parts together
+            restCardContent.append(restCardTitle);
+            restCardContent.append(restAddress);
+            restCardContent.append(restType);
+                // restCardContent.append(restMenuLink);
+                // restCardContent.append(restPrice);
+            restCardContent.append(restRating);
+            restCard.append(restCardContent);
+
+            //Pushes finished card into the HTML
+            $("#restaurants").append(restCard);
+            
+        }  
+        $("#restaurants-header").addClass("active");
+    });
+};
+
 //Geocoding ----------------------------------------------------------------------------------------------
 var mapQueryUrl = "https://www.mapquestapi.com/geocoding/v1/address?";
 var mapSearchObject = {
@@ -112,6 +182,7 @@ var ajaxCall = function () {
             console.log("Lat: " + lat);
             console.log("Lon: " + lon);
             populateConcerts();
+            populateRestaurants();
         });
 };
 
