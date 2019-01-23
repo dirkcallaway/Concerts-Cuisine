@@ -120,9 +120,9 @@ p {
  
 .page-footer {
     background-color: #0a00b6;
-    /* height: 110px; */
+    padding: 0px;
 }
 
 #songkick-logo {
-    height: 50px;
+    height: 40px;
 }
