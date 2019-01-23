@@ -28,10 +28,8 @@ $(document).ready(function () {
 
     };
 
-    //Concerts -----------------------------------------------------------------------------------------------
 
-    //when you enter a new zipcode on the second call, it logs the correct zip code, new lat/lon, and new 
-    //metroareaId. Yet the div only displays Wichita.  Problem with the display??
+    //Concerts -----------------------------------------------------------------------------------------------
 
     // Populate Concert function calls the SongKick API and then builds the concert cards into the HTML
     var populateConcerts = function () {
@@ -69,19 +67,20 @@ $(document).ready(function () {
                             concertCity = response.resultsPage.results.event[i].location.city;
                             // console.log("City, State: " + concertCity);
 
+
+                        //Adjust class name of concertCard to match color scheme
+                        var concertCard = $("<div class='card concert-click z-depth-4'>");
+                        var cardContent = $("<div class='card-content white-text' id='concertCard'>");
+
+                        var cardTitle = $("<span class='card-title' id='concertTitle'>").text(concertDetails); //Link to SongKick Band Name
+
+                        var cardCity = $("<p class='col s6 offset-s9'>").text(concertCity); //Link to SongKick City, State, Country
+
                             concertLink = response.resultsPage.results.event[i].uri;
                             // console.log("Link: " + concertLink);
 
-                            //Adjust class name of concertCard to match color scheme
-                            var concertCard = $("<div class='card deep-purple lighten-1 concert-click'>");
-                            var cardContent = $("<div class='card-content white-text'>");
-
-                            var cardTitle = $("<span class='card-title'>").text("Event: " + concertDetails); //Link to SongKick Band Name
-
-                            var cardCity = $("<p>").text(concertCity); //Link to SongKick City, State, Country
-
-                            var cardLink = $("<a target='_blank'>").text("Buy Tickets");
-                            cardLink.attr("href", concertLink); //Link to SongKick Website Link
+                         var cardLink = $("<a target='_blank'>").text("Buy Tickets");
+                         cardLink.attr("href", concertLink); //Link to SongKick Website Link
 
 
                             //Puts the card parts together
@@ -171,10 +170,31 @@ $(document).ready(function () {
                     restCardContent.append(restRating);
                     restCard.append(restCardContent);
 
-                    //Pushes finished card into the HTML
-                    $("#restaurants").append(restCard);
 
-                }
+                //Retrieves restaurant data from object to populate card
+                var restCard = $("<div class='card rest-click z-depth-4'>");
+                var restCardContent = $("<div class='card-content white-text' id='restCard'>");
+                var restCardTitle = $("<span class='card-title' id='restTitle'>").text(" " + restaurantData.name);
+                var restAddress = $("<p>").text("Address: " + restaurantData.address);
+                var restType = $("<p>").text("" + restaurantData.type);
+                // var restMenuLink = $("<>").html("" + restaurantData.menu); //not essential RN but will make work if/when I can
+                // var restPrice = $("<p>").text("" + restaurantData.price); //not essential, would like to format differently
+                var restRating = $("<p id='custRating'>").text("Customer Rating: " + restaurantData.rating);
+
+
+                //Puts the card parts together
+                restCardContent.append(restCardTitle);
+                restCardContent.append(restAddress);
+                restCardContent.append(restType);
+                // restCardContent.append(restMenuLink);
+                // restCardContent.append(restPrice);
+                restCardContent.append(restRating);
+                restCard.append(restCardContent);
+
+                //Pushes finished card into the HTML
+                $("#restaurants").append(restCard);
+
+            }
                 elem = document.querySelector('.collapsible');
 
                 instance = M.Collapsible.getInstance(elem);
@@ -185,76 +205,79 @@ $(document).ready(function () {
                 });
             });
     };
+//             $(".rest-click").on("click", function () {
+//                 $("#food-itinerary").empty();
+//                 $(this).clone().appendTo("#food-itinerary");
+//             });
 
-    //Geocoding ----------------------------------------------------------------------------------------------
-    var mapQueryUrl = "https://www.mapquestapi.com/geocoding/v1/address?";
-    var mapSearchObject = {
-        key: "h1AaSPSUGvuBlInfmGZQsZYqflUTxUri",
-        location: ""
-    };
-    var lat;
-    var lon;
+//Geocoding ----------------------------------------------------------------------------------------------
+var mapQueryUrl = "https://www.mapquestapi.com/geocoding/v1/address?";
+var mapSearchObject = {
+    key: "h1AaSPSUGvuBlInfmGZQsZYqflUTxUri",
+    location: ""
+};
+var lat;
+var lon;
 
-    var ajaxCall = function () {
-        $.ajax({
-                url: mapQueryUrl,
-                method: "GET"
-            })
+var ajaxCall = function () {
+    $.ajax({
+            url: mapQueryUrl,
+            method: "GET"
+        })
 
-            .then(function (response) {
-                console.log(response);
-                lat = response.results[0].locations[0].latLng.lat;
-                // console.log(response.results[0].locations.latLng.lat);
-                lon = response.results[0].locations[0].latLng.lng;
-                // console.log(response.results[0].locations.latLng.lng);
-                console.log("Lat: " + lat);
-                console.log("Lon: " + lon);
-                populateConcerts();
-                populateRestaurants();
-            });
-    };
+        .then(function (response) {
+            console.log(response);
+            lat = response.results[0].locations[0].latLng.lat;
+            // console.log(response.results[0].locations.latLng.lat);
+            lon = response.results[0].locations[0].latLng.lng;
+            // console.log(response.results[0].locations.latLng.lng);
+            console.log("Lat: " + lat);
+            console.log("Lon: " + lon);
+            populateConcerts();
+            populateRestaurants();
+        });
+};
 
-    //Clear concert & restaurant divs at new call function
+//Clear concert & restaurant divs at new call function
 
-    function clearConcerts() {
-        $("#concerts").empty();
+function clearConcerts() {
+    $("#concerts").empty();
 
-    };
+};
 
-    function clearRestaurants() {
-        $("#restaurants").empty();
-    };
+function clearRestaurants() {
+    $("#restaurants").empty();
+};
 
-    //Calls -----------------------------------------------------------------------------------------------
+//Calls -----------------------------------------------------------------------------------------------
 
 
-    //Submit Button Click...
-    $("#submit").on("click", function (event) {
-        event.preventDefault();
-        clearConcerts();
-        clearRestaurants();
-        //Grabs Value from input box
-        var zipCode = $("#zip").val().trim();
-        //Checks length of input... is it 5 long
-        if (zipCode.length > 5 || zipCode.length < 5) {
-            //Alerts if more or less than 5 long
-            alert("Please enter a valid Zip Code.");
-        } else {
-            //Sets the location in the mapSearchObject
-            mapSearchObject.location = zipCode;
-        }
-        //Updates the mapQueryUrl
-        //!! the += does continual appending so the zip in mapsearchobject never truly gets reset,
-        //just added to. !!
-        // mapQueryUrl += $.param(mapSearchObject);
-        mapQueryUrl = "https://www.mapquestapi.com/geocoding/v1/address?" + $.param(mapSearchObject);
+//Submit Button Click...
+$("#submit").on("click", function (event) {
+    event.preventDefault();
+    clearConcerts();
+    clearRestaurants();
+    //Grabs Value from input box
+    var zipCode = $("#zip").val().trim();
+    //Checks length of input... is it 5 long
+    if (zipCode.length > 5 || zipCode.length < 5) {
+        //Alerts if more or less than 5 long
+        M.toast({html: 'Invalid Zipcode', classes:'rounded white-text red lighten-2',});
+    } else {
+        //Sets the location in the mapSearchObject
+        mapSearchObject.location = zipCode;
+    }
+    //Updates the mapQueryUrl
+    mapQueryUrl = "https://www.mapquestapi.com/geocoding/v1/address?" + $.param(mapSearchObject);
 
-        console.log("new: ", mapQueryUrl);
-        //Resets the zip input box
-        $("#zip").val("");
-        //Calls the MapQuest API
-        console.log(zipCode);
-        ajaxCall();
+    console.log("new: ", mapQueryUrl);
+    //Resets the zip input box
+    $("#zip").val("");
+    //Calls the MapQuest API
+    console.log(zipCode);
+    ajaxCall();
+
     });
+
 
 });

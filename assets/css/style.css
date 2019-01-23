@@ -4,8 +4,7 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #6200ea;
-    color: white;
+    background-color: #e1e2e1;
 }
 
 nav {
@@ -16,11 +15,6 @@ nav {
     font-family: 'Montserrat', sans-serif;
     background-color: #0a00b6;
 }
-
-/* .brand-logo {
-    margin-bottom: 10px;
-    padding: 50px;
-} */
 
 img {
     margin-top: 10px;
@@ -41,33 +35,30 @@ img {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     background-color: #0a00b6;
-    color: white;
+    color: #76ff03;
     border-bottom:1px solid white;
 }
 
 .collapsible-body {
     font-family: 'Raleway', sans-serif;
     font-size: 18px;
-    background-color:lightgray;
+    background-color:white;
     color: black;
     border: none;
 }
 
 .fas {
-    color: #76ff03;
+    color: white;
 }
 
 p {
     font-family: 'Raleway', sans-serif;
-    margin: 20px;
-    /*remove margin once final*/
 }
 
 .card {
     font-family: 'Raleway', sans-serif;
     margin-top: 30px;
     padding: 0px;
-    /* height: 100px; */
 }
 
 .card-content {
@@ -95,21 +86,29 @@ p {
 }
 
 #submit {
-    background-color: #9d46ff;
+    background-color: #59bf02;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     margin-top: 10px;
 }
 
+#concertCard,
+#restCard   {
+    background-color: #0a00b6;
+ }
+ 
+ a {
+     color: #59bf02;
+     align-self: center;
+ }
+ 
+ #concertTitle,
+ #restTitle     {
+     text-align: center;
+ }
 
-/* .mb-0 {
-    margin-bottom: 0;
-}
-
-.pb-0 {
-    padding-bottom: 0;
-} */
-
- /* !! don't think we need these if they're set inline to 0 !! */
-
-
+ #custRating {
+    color: #59bf02;
+ }
+ 
+ 
