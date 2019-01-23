@@ -15,6 +15,12 @@ $(document).ready(function () {
     var concertCity = "";
     var concertLink = "";
 
+    //Initialize Collapsibles
+     $(document).ready(function () {
+        $('.collapsible').collapsible();
+      });
+      
+
     //Loading Maps ------------------------------------------------------------------------------------------
 
     var loadMap = function () {
