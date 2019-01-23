@@ -94,6 +94,11 @@ var populateConcerts = function () {
 
                     var instance = M.Collapsible.getInstance(elem);
                     instance.open(0);
+                    $(".concert-click").on("click", function () {
+                        $("#concert-itinerary").empty();
+                        $(this).clone().appendTo("#concert-itinerary");
+                        instance.open(1);
+                    });
                 });
 
 
@@ -144,7 +149,7 @@ var populateRestaurants = function () {
 
 
                 //Retrieves restaurant data from object to populate card
-                var restCard = $("<div class='card deep-purple lighten-1 concert-click'>");
+                var restCard = $("<div class='card deep-purple lighten-1 rest-click'>");
                 var restCardContent = $("<div class='card-content white-text'>");
                 var restCardTitle = $("<span class='card-title'>").text(" " + restaurantData.name);
                 var restAddress = $("<p>").text("Address: " + restaurantData.address);
@@ -167,9 +172,9 @@ var populateRestaurants = function () {
                 $("#restaurants").append(restCard);
 
             }
-            $(".concert-click").on("click", function () {
-                $("#concert-itinerary").empty();
-                $(this).clone().appendTo("#concert-itinerary");
+            $(".rest-click").on("click", function () {
+                $("#food-itinerary").empty();
+                $(this).clone().appendTo("#food-itinerary");
             });
         });
 };
