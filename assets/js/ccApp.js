@@ -23,6 +23,9 @@ var loadMap = function () {
 
 //Concerts -----------------------------------------------------------------------------------------------
 
+//when you enter a new zipcode on the second call, it logs the correct zip code, new lat/lon, and new 
+//metroareaId. Yet the div only displays Wichita.  Problem with the display??
+
 // Populate Concert function calls the SongKick API and then builds the concert cards into the HTML
 var populateConcerts = function () {
 
@@ -94,6 +97,8 @@ var populateConcerts = function () {
 
 //Restaurants --------------------------------------------------------------------------------------------
 
+//restaurants need to update with every new zipcode entry - currently they don't update
+
 //Populate Restaurant function calls the Zomato API and then buildes the restaurant cards into the HTHML
 var populateRestaurants = function() {
 
@@ -130,7 +135,6 @@ var populateRestaurants = function() {
                 ratingText: response.nearby_restaurants[i].restaurant.user_rating.rating_text,
             }
 
-            console.log(restaurantData);
          
             //Retrieves restaurant data from object to populate card
             var restCard = $("<div class='card deep-purple lighten-1 concert-click'>");
@@ -178,7 +182,9 @@ var ajaxCall = function () {
         .then(function (response) {
             console.log(response);
             lat = response.results[0].locations[0].latLng.lat;
+                // console.log(response.results[0].locations.latLng.lat);
             lon = response.results[0].locations[0].latLng.lng;
+                // console.log(response.results[0].locations.latLng.lng);
             console.log("Lat: " + lat);
             console.log("Lon: " + lon);
             populateConcerts();
@@ -186,6 +192,16 @@ var ajaxCall = function () {
         });
 };
 
+//Clear concert & restaurant divs at new call function
+
+function clearConcerts() {
+    $("#concerts").empty();
+    
+};
+
+function clearRestaurants() {
+    $("#restaurants").empty();
+};
 
 //Calls -----------------------------------------------------------------------------------------------
 
@@ -193,7 +209,8 @@ var ajaxCall = function () {
 //Submit Button Click...
 $("#submit").on("click", function (event) {
     event.preventDefault();
-    $("#concerts").empty();
+    clearConcerts();
+    clearRestaurants();
     //Grabs Value from input box
     var zipCode = $("#zip").val().trim();
     //Checks length of input... is it 5 long
@@ -205,10 +222,14 @@ $("#submit").on("click", function (event) {
         mapSearchObject.location = zipCode;
     }
     //Updates the mapQueryUrl
-    mapQueryUrl += $.param(mapSearchObject);
-    // console.log(mapQueryUrl);
+    //!! the += does continual appending so the zip in mapsearchobject never truly gets reset,
+    //just added to. !!
+    // mapQueryUrl += $.param(mapSearchObject);
+    mapQueryUrl = "https://www.mapquestapi.com/geocoding/v1/address?" + $.param(mapSearchObject);
+
+        console.log("new: ", mapQueryUrl);
     //Resets the zip input box
-    $("#zip").val("");
+    $("#zip").val(""); 
     //Calls the MapQuest API
     console.log(zipCode);
     ajaxCall();
