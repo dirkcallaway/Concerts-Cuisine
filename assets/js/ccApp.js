@@ -106,68 +106,72 @@ var populateConcerts = function () {
 //restaurants need to update with every new zipcode entry - currently they don't update
 
 //Populate Restaurant function calls the Zomato API and then buildes the restaurant cards into the HTHML
-var populateRestaurants = function() {
+var populateRestaurants = function () {
 
     //restaurant query url
     var foodQueryURL = "https://developers.zomato.com/api/v2.1/geocode?lat=" + lat + "&lon=" + lon + "&count=10";
-    
+
     //create ajax call
     $.ajax({
-        url: foodQueryURL,
+            url: foodQueryURL,
 
-        //use headers from Curl request to create Zomato-acceptable call format
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader("Accept", "application/json"),
-            xhr.setRequestHeader("user-key", "18e1e3853dbc10b73621abe274b59639")
-        }, success: function(data) {},
+            //use headers from Curl request to create Zomato-acceptable call format
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Accept", "application/json"),
+                    xhr.setRequestHeader("user-key", "18e1e3853dbc10b73621abe274b59639")
+            },
+            success: function (data) {},
 
-        method: "GET"
-    })
+            method: "GET"
+        })
 
-    .then(function(response) {
-         
-        //for loop to show data and create cards for each restaurant 
-        for (var i = 0; i < response.nearby_restaurants.length; i++) {
-            
-            //turn data into an object for easier reference
-            var restaurantData = {
-                name: response.nearby_restaurants[i].restaurant.name,
-                address: response.nearby_restaurants[i].restaurant.location.address,
-                type: response.nearby_restaurants[i].restaurant.cuisines,
-                price: response.nearby_restaurants[i].restaurant.price_range,
-                menu: response.nearby_restaurants[i].restaurant.menu_url,
-                link: response.nearby_restaurants[i].restaurant.url,
-                rating: response.nearby_restaurants[i].restaurant.user_rating.aggregate_rating,
-                ratingText: response.nearby_restaurants[i].restaurant.user_rating.rating_text,
-            }
+        .then(function (response) {
 
-         
-            //Retrieves restaurant data from object to populate card
-            var restCard = $("<div class='card deep-purple lighten-1 concert-click'>");
-            var restCardContent = $("<div class='card-content white-text'>");
-            var restCardTitle = $("<span class='card-title'>").text(" " + restaurantData.name); 
-            var restAddress = $("<p>").text("Address: " + restaurantData.address); 
-            var restType = $("<p>").text("" + restaurantData.type); 
-              // var restMenuLink = $("<>").html("" + restaurantData.menu); //not essential RN but will make work if/when I can
-              // var restPrice = $("<p>").text("" + restaurantData.price); //not essential, would like to format differently
-            var restRating = $("<p>").text("Customer Rating: " + restaurantData.rating); 
+            //for loop to show data and create cards for each restaurant 
+            for (var i = 0; i < response.nearby_restaurants.length; i++) {
+
+                //turn data into an object for easier reference
+                var restaurantData = {
+                    name: response.nearby_restaurants[i].restaurant.name,
+                    address: response.nearby_restaurants[i].restaurant.location.address,
+                    type: response.nearby_restaurants[i].restaurant.cuisines,
+                    price: response.nearby_restaurants[i].restaurant.price_range,
+                    menu: response.nearby_restaurants[i].restaurant.menu_url,
+                    link: response.nearby_restaurants[i].restaurant.url,
+                    rating: response.nearby_restaurants[i].restaurant.user_rating.aggregate_rating,
+                    ratingText: response.nearby_restaurants[i].restaurant.user_rating.rating_text,
+                }
 
 
-            //Puts the card parts together
-            restCardContent.append(restCardTitle);
-            restCardContent.append(restAddress);
-            restCardContent.append(restType);
+                //Retrieves restaurant data from object to populate card
+                var restCard = $("<div class='card deep-purple lighten-1 concert-click'>");
+                var restCardContent = $("<div class='card-content white-text'>");
+                var restCardTitle = $("<span class='card-title'>").text(" " + restaurantData.name);
+                var restAddress = $("<p>").text("Address: " + restaurantData.address);
+                var restType = $("<p>").text("" + restaurantData.type);
+                // var restMenuLink = $("<>").html("" + restaurantData.menu); //not essential RN but will make work if/when I can
+                // var restPrice = $("<p>").text("" + restaurantData.price); //not essential, would like to format differently
+                var restRating = $("<p>").text("Customer Rating: " + restaurantData.rating);
+
+
+                //Puts the card parts together
+                restCardContent.append(restCardTitle);
+                restCardContent.append(restAddress);
+                restCardContent.append(restType);
                 // restCardContent.append(restMenuLink);
                 // restCardContent.append(restPrice);
-            restCardContent.append(restRating);
-            restCard.append(restCardContent);
+                restCardContent.append(restRating);
+                restCard.append(restCardContent);
 
-            //Pushes finished card into the HTML
-            $("#restaurants").append(restCard);
-            
-        }  
-        $("#restaurants-header").addClass("active");
-    });
+                //Pushes finished card into the HTML
+                $("#restaurants").append(restCard);
+
+            }
+            $(".concert-click").on("click", function () {
+                $("#concert-itinerary").empty();
+                $(this).clone().appendTo("#concert-itinerary");
+            });
+        });
 };
 
 //Geocoding ----------------------------------------------------------------------------------------------
@@ -188,9 +192,9 @@ var ajaxCall = function () {
         .then(function (response) {
             console.log(response);
             lat = response.results[0].locations[0].latLng.lat;
-                // console.log(response.results[0].locations.latLng.lat);
+            // console.log(response.results[0].locations.latLng.lat);
             lon = response.results[0].locations[0].latLng.lng;
-                // console.log(response.results[0].locations.latLng.lng);
+            // console.log(response.results[0].locations.latLng.lng);
             console.log("Lat: " + lat);
             console.log("Lon: " + lon);
             populateConcerts();
@@ -202,7 +206,7 @@ var ajaxCall = function () {
 
 function clearConcerts() {
     $("#concerts").empty();
-    
+
 };
 
 function clearRestaurants() {
@@ -233,9 +237,9 @@ $("#submit").on("click", function (event) {
     // mapQueryUrl += $.param(mapSearchObject);
     mapQueryUrl = "https://www.mapquestapi.com/geocoding/v1/address?" + $.param(mapSearchObject);
 
-        console.log("new: ", mapQueryUrl);
+    console.log("new: ", mapQueryUrl);
     //Resets the zip input box
-    $("#zip").val(""); 
+    $("#zip").val("");
     //Calls the MapQuest API
     console.log(zipCode);
     ajaxCall();
