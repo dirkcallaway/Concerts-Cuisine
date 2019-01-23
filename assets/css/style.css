@@ -5,6 +5,13 @@
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #e1e2e1;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 nav {
@@ -111,4 +118,11 @@ p {
     color: #59bf02;
  }
  
- 
+.page-footer {
+    background-color: #0a00b6;
+    /* height: 110px; */
+}
+
+#songkick-logo {
+    height: 50px;
+}
