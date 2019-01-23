@@ -24,17 +24,12 @@
 
   <!--NavBar-->
   <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Concerts & Cuisine</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Are</a></li>
-        <li><a href="badges.html">These</a></li>
-        <li><a href="collapsible.html">Needed?</a></li>
-      <!--Probably not but let's keep them for now -K -->
-      </ul>
+    <div class="nav-wrapper z-depth-3">
+      <img src="assets/images/Artboard 2.png" alt="Concerts & Cuisine" style="height: 120px" class="brand-logo col s12 m4">
     </div>
   </nav>
 
+<<<<<<< HEAD
 
 <div class="row">
   <!-- Collapsible Div for Concerts/Restaurants/Itinerary-->
@@ -229,6 +224,95 @@
   </body>
 </html>
 
+=======
+  <!--Images-->
+  <!-- <div class="row">
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-image">
+            <img src="assets/images/andre-benz-425238-unsplash.jpg">
+          </div>
+        </div>
+      </div>
+            
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-image">
+              <img src="assets/images/eszter-biro-129457-unsplash.jpg">
+            </div>
+          </div>
+        </div>
+      </div>
+  </div> -->
+
+
+  <!-- <div class="carousel">
+      <a class="carousel-item"><img src="assets/images/andre-benz-425238-unsplash.jpg"></a>
+      <a class="carousel-item"><img src="assets/images/eszter-biro-129457-unsplash.jpg"></a>
+      <a class="carousel-item"><img src="assets/images/francisco-moreno-110533-unsplash.jpg"></a>
+    </div>
+         -->
+
+  <div class="row">
+    <div class="col s6 center offset-m3">
+      <div class="card z-depth-3" id="search">
+        <div class="card-content white-text">
+
+            <form class="col s12">
+                <div class="input-field col s2 m6">
+                  <input placeholder="Enter Your Zipcode" id="zip" type="text" class="validate">
+                </div>
+                <div class="col s2 m6 submitDiv">
+                  <button class="btn waves-effect waves-light z-depth-3" type="submit" name="action" id="submit"><i class="fas fa-globe"></i> Submit </button>
+                </div>
+            </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+
+    <!-- Collapsible Div for Concerts/Restaurants/Itinerary-->
+    <div class="col s12 m10 offset-m1">
+      <ul class="collapsible z-depth-4">
+        <li>
+          <div class="collapsible-header" id="concerts-header"><i class="fas fa-guitar"></i>CONCERTS</div>
+          <div class="collapsible-body" id="concerts"><span></span></div>
+          <!-- "Add Concert" button?  Or do we want to just be able to click on the div? -K -->
+        </li>
+        <li>
+          <div class="collapsible-header" id="restaurants-header"><i class="fas fa-utensils"></i>RESTAURANTS</div>
+          <div class="collapsible-body" id="restaurants"><span></span></div>
+          <!-- "Add restaurant button?  Or do we want to just be able to click on the div? -K -->
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="fas fa-clipboard-list"></i>ITINERARY</div>
+          <div class="collapsible-body"><span>This page will display the concert and restaurant you chose with ticket
+              information and options for reservations.
+              <p>Lorem ipsum dolor amet small batch scenester aute schlitz, flexitarian neutra crucifix fixie
+                selvage. Pug vape elit taiyaki jean shorts helvetica minim lorem taxidermy eiusmod meggings photo booth
+                fixie live-edge
+                salvia. Hella tacos taxidermy, disrupt salvia pour-over sunt occupy fam lomo vinyl four dollar toast.
+                Wolf scenester lorem
+                in ugh af craft beer street art vice. Pok pok pariatur chillwave meditation echo park, adipisicing
+                fanny pack PBR&B nulla
+                consequat. Pabst stumptown photo booth fam brunch plaid sriracha chicharrones irony ad meggings neutra
+                portland.</p>
+              <a class="waves-effect waves-light btn" id="buyTix">Buy Tickets</a>
+              <!--Link to ticket buying using Songkick API-->
+              <a class="waves-effect waves-light btn" id="makeRes">Make Reservations</a>
+              <!--Link to restaurant or reservations system using OpenTable API or similar-->
+            </span></div>
+        </li>
+      </ul>
+    </div>
+
+
+  </div>
+>>>>>>> 53e1afced5f2f718f7cabe814e7ad7e5f9b6ab94
 
 
   <!-- Optional JavaScript -->
@@ -236,20 +320,22 @@
   <!-- jQuery first, then Popper.js, then Materialize -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="geocode.js"></script>
+  <script src="assets/js/ccApp.js"></script>
+  <!-- <script src="songkick.js"></script> -->
+
+<!--Remove and add in to main JS file-->
   <script>
-    //      document.addEventListener('DOMContentLoaded', function() {
-    //     var elems = document.querySelectorAll('.collapsible');
-      //     var instances = M.Collapsible.init(elems, options);
-      //   });
-
-    // Or with jQuery
-
+    //initalize collapsible
     $(document).ready(function () {
       $('.collapsible').collapsible();
     });
-  </script>
-
+ 
+  //initialize image carousel
+  $(document).ready(function(){
+    $('.carousel').carousel();
+  });
+    
+</script>
 </body>
 
 </html>
