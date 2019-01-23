@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Style Links (Reset.css, Materialize, FontAwesome, Style.css)-->
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+
+  <title>Concerts & Cuisine</title>
+
+</head>
+
+<body>
+
+
+  <!--NavBar-->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Concerts & Cuisine</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Are</a></li>
+        <li><a href="badges.html">These</a></li>
+        <li><a href="collapsible.html">Needed?</a></li>
+        <!--Probably not but let's keep them for now -K -->
+      </ul>
+    </div>
+  </nav>
+
+  <div class="row">
+    <div class="col s12 m4 center offset-m4">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Search for nearby concerts.</span>
+          <div class="row mb-0">
+            <form class="col s12 offset-s4">
+              <div class="row mb-0">
+                <div class="input-field col s4">
+                  <input placeholder="ZipCode" id="zip" type="text" class="validate">
+                </div>
+            </form>
+          </div>
+        </div>
+        <div class="card-action pb-0">
+          <button class="btn waves-effect waves-light" type="submit" name="action" id="submit"><i class="fas fa-globe"></i> Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Collapsible Div for Concerts/Restaurants/Itinerary-->
+    <div class="col s12 m9">
+      <ul class="collapsible">
+        <li>
+          <div class="collapsible-header"><i class="fas fa-guitar"></i>CONCERTS</div>
+          <div class="collapsible-body" id="concerts"><span>Populate nearby concerts here.</span></div>
+          <!-- "Add Concert" button?  Or do we want to just be able to click on the div? -K -->
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="fas fa-utensils"></i>RESTAURANTS</div>
+          <div class="collapsible-body"><span>Concerts near the venue will be displayed here.</span></div>
+          <!-- "Add restaurant button?  Or do we want to just be able to click on the div? -K -->
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="fas fa-clipboard-list"></i>ITINERARY</div>
+          <div class="collapsible-body"><span>This page will display the concert and restaurant you chose with ticket
+              information and options for reservations.
+              <p>Lorem ipsum dolor amet small batch scenester aute schlitz, flexitarian neutra crucifix fixie
+                selvage. Pug vape elit taiyaki jean shorts helvetica minim lorem taxidermy eiusmod meggings photo booth
+                fixie live-edge
+                salvia. Hella tacos taxidermy, disrupt salvia pour-over sunt occupy fam lomo vinyl four dollar toast.
+                Wolf scenester lorem
+                in ugh af craft beer street art vice. Pok pok pariatur chillwave meditation echo park, adipisicing
+                fanny pack PBR&B nulla
+                consequat. Pabst stumptown photo booth fam brunch plaid sriracha chicharrones irony ad meggings neutra
+                portland.</p>
+              <a class="waves-effect waves-light btn" id="buyTix">Buy Tickets</a>
+              <!--Link to ticket buying using Songkick API-->
+              <a class="waves-effect waves-light btn" id="makeRes">Make Reservations</a>
+              <!--Link to restaurant or reservations system using OpenTable API or similar-->
+            </span></div>
+        </li>
+      </ul>
+    </div>
+
+
+
+    <!--Your Choices Card-->
+    <!--Not sure this card is needed.  Let's discuss -K -->
+    <div class="col s12 m3">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text" id="choicesCard">
+          <span class="card-title">YOUR CHOICES:</span>
+          <!--Work with flow-text - font seems a little big RN-->
+          <p>You haven't chosen anything yet!</p>
+          <!--populate this dynamically with concert and/or restaurant choices-->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- Optional JavaScript -->
+
+  <!-- jQuery first, then Popper.js, then Materialize -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="assets/js/ccApp.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.collapsible').collapsible();
+    });
+  </script>
+
+</body>
+
+</html>
