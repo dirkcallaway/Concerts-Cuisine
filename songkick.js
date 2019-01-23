@@ -24,7 +24,6 @@ var concertLink = "";
 
 $(document).ready(function () {
 
-    var populateConcerts = function() {
     
         var concertQueryUrl = "https://api.songkick.com/api/3.0/search/locations.json?location=geo:" + lat + "," + lon + "&apikey=" + apiKey
         console.log(concertQueryUrl);
@@ -87,9 +86,8 @@ $(document).ready(function () {
 
                     }
                 });
+            });
+
+        
 
 
-        });
-
-};
-});
