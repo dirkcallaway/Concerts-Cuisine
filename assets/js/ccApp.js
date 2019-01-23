@@ -1,3 +1,6 @@
+//Materialize Instance Variables
+
+
 //Songkick API variables
 var apiKey = "N3NwIQTcgTiC3jVE";
 var metroAreaId = "";
@@ -87,7 +90,10 @@ var populateConcerts = function () {
                         $("#concerts").append(concertCard);
                         //Need to remove old search when new zip submitted 
                     }
-                    $('#concerts-header').addClass("active");
+                    var elem = document.querySelector('.collapsible');
+
+                    var instance = M.Collapsible.getInstance(elem);
+                    instance.open(0);
                 });
 
 
