@@ -96,6 +96,7 @@ $(document).ready(function () {
                         }
                         elem = document.querySelector('.collapsible');
 
+
                         instance = M.Collapsible.getInstance(elem);
                         instance.open(0);
                         $(".concert-click").on("click", function () {
@@ -104,10 +105,8 @@ $(document).ready(function () {
                             instance.open(1);
                         });
                     });
-
-
-            });
-
+                });
+        
     };
 
     //Restaurants --------------------------------------------------------------------------------------------
@@ -257,4 +256,5 @@ $(document).ready(function () {
         console.log(zipCode);
         ajaxCall();
     });
+
 });
