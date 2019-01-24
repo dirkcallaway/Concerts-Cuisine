@@ -99,10 +99,35 @@ p {
     margin-top: 10px;
 }
 
+#submit:visited {
+    background-color: #59bf02;
+}
+
+#submit:hover {
+    background-color: #76ff03;;
+}
+
 #concertCard,
 #restCard   {
     background-color: #0a00b6;
  }
+
+ #concertCard:visited {
+    background-color: #0a00b6;
+ }
+
+ #concertCard:hover {
+    background-color: #1d1ddb;
+ }
+
+ #restCard:visited {
+    background-color: #0a00b6;
+ }
+ 
+ #restCard:hover {
+    background-color: #1d1ddb;
+ }
+
  
  a {
      color: #59bf02;
@@ -126,3 +151,21 @@ p {
 #songkick-logo {
     height: 40px;
 }
+
+.btn {
+    background-color: #59bf02;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+
+ .btn:visited {
+    background-color: #59bf02;
+ }
+
+ 
+.btn:hover {
+    background-color: #76ff03;
+ }
