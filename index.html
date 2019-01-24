@@ -32,6 +32,7 @@
   </nav>
 
   <main>
+    
     <!--Zipcode Search & Submit Button-->
     <div class="row">
       <div class="col s12 m6 center offset-m3">
@@ -53,30 +54,36 @@
       </div>
     </div>
 
-    <!-- Collapsible Div for Concerts/Restaurants/Itinerary-->
-    <div class="row">
-      <div class="col s12 m10 offset-m1">
-        <ul class="collapsible z-depth-4">
-          <li>
-            <div class="collapsible-header" id="concerts-header"><i class="fas fa-guitar"></i>CONCERTS</div>
-            <div class="collapsible-body" id="concerts"><span></span></div>
-            <!-- "Add Concert" button?  Or do we want to just be able to click on the div? -K -->
-          </li>
-          <li>
-            <div class="collapsible-header" id="restaurants-header"><i class="fas fa-utensils"></i>RESTAURANTS</div>
-            <div class="collapsible-body" id="restaurants"><span></span></div>
-            <!-- "Add restaurant button?  Or do we want to just be able to click on the div? -K -->
-          </li>
-          <li>
-            <div class="collapsible-header"><i class="fas fa-clipboard-list"></i>ITINERARY</div>
-            <div class="collapsible-body">
-              <div id="concert-itinerary"></div>
-              <div id="food-itinerary"></div>
-              <div id="map"></div>
-            </div>
-          </li>
-        </ul>
-      </div>
+
+  <!-- Collapsible Div for Concerts/Restaurants/Itinerary-->
+  <div class="row">
+    <div class="col s12 m10 offset-m1">
+      <ul class="collapsible z-depth-4">
+        <li>
+          <div class="collapsible-header" id="concerts-header"><i class="fas fa-guitar"></i>CONCERTS</div>
+          <div class="collapsible-body" id="concerts"><span></span></div>
+          
+        </li>
+        <li>
+          <div class="collapsible-header" id="restaurants-header"><i class="fas fa-utensils"></i>RESTAURANTS</div>
+          <div class="collapsible-body" id="restaurants"><span></span></div>
+          
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="fas fa-clipboard-list"></i>ITINERARY</div>
+          <div class="collapsible-body">
+              <a href="#" class="waves-effect waves-green btn"><i class="fas fa-ticket-alt left"></i>Buy Tickets</a>
+              <a href="#" class="waves-effect waves-green btn"><i class="fas fa-glass-cheers left"></i>Make Reservations</a>
+
+              <!--Button for Kavon's API-->
+              <!-- <a href="#" class="waves-effect waves-light btn"><i class="far fa-calendar-altleft"></i>Add to Calendar</a> -->
+
+            <div id="concert-itinerary"></div>
+            <div id="food-itinerary"></div>
+            <div id="map"></div>
+          </div>
+        </li>
+      </ul>
     </div>
 
   </main>
