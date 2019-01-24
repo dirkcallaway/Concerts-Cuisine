@@ -83,16 +83,17 @@ $(document).ready(function () {
                             var cardCity = $("<p class='col s6 offset-s6 offset-m9'>").text(concertCity); //Link to SongKick City, State, Country
 
                             concertLink = response.resultsPage.results.event[i].uri;
-
-
-                            var cardLink = $("<a target='_blank'>").text("Buy Tickets");
-                            cardLink.attr("href", concertLink); //Link to SongKick Website Link
+                            
+                            //No longer need this (buy tix button live) but JIC...
+                            // var cardLink = concertLink;
+                            // var cardLink = $("<a target='_blank'>").text("Buy Tickets");
+                            // cardLink.attr("href", concertLink); //Link to SongKick Website Link
 
 
                             //Puts the card parts together
                             cardContent.append(cardTitle);
                             cardContent.append(cardCity);
-                            cardContent.append(cardLink);
+                            // cardContent.append(cardLink);
                             concertCard.attr("data-lat", venueLat);
                             concertCard.attr("data-lon", venueLon);
                             concertCard.append(cardContent);
@@ -108,6 +109,7 @@ $(document).ready(function () {
                         instance.open(0);
                         $(".concert-click").on("click", function () {
                             $("#concert-itinerary").empty();
+                            $("#tixBtn").attr("href", concertLink);
                             $(this).clone().appendTo("#concert-itinerary");
                             venueLat = $(this).data("lat");
                             console.log("Lat: " + venueLat);
@@ -160,6 +162,8 @@ $(document).ready(function () {
                         ratingText: response.nearby_restaurants[i].restaurant.user_rating.rating_text,
                     }
 
+                    console.log(restaurantData);
+
                     //Retrieves restaurant data from object to populate card
                     var restCard = $("<div class='card rest-click z-depth-4'>");
                     var restCardContent = $("<div class='card-content white-text' id='restCard'>");
@@ -190,6 +194,7 @@ $(document).ready(function () {
                 instance = M.Collapsible.getInstance(elem);
                 $(".rest-click").on("click", function () {
                     $("#food-itinerary").empty();
+                    $("#restBtn").attr("href", restaurantData.link);
                     $(this).clone().appendTo("#food-itinerary");
                     instance.open(2);
                     loadMap();
