@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
     crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+  <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
   <link rel="stylesheet" href="assets/css/style.css">
 
 
@@ -30,52 +32,54 @@
   </nav>
 
   <main>
-  <!--Zipcode Search & Submit Button-->
-  <div class="row">
-    <div class="col s12 m6 center offset-m3">
-      <div class="card z-depth-3" id="search">
-        <div class="card-content white-text">
+    <!--Zipcode Search & Submit Button-->
+    <div class="row">
+      <div class="col s12 m6 center offset-m3">
+        <div class="card z-depth-3" id="search">
+          <div class="card-content white-text">
 
             <form class="col s12">
-                <div class="input-field col s7 m6">
-                  <input placeholder="Enter Your Zipcode" id="zip" type="text" class="validate">
-                </div>
-                <div class="col s2 m6 submitDiv">
-                  <button class="btn waves-effect waves-light z-depth-3" type="submit" name="action" id="submit"><i class="fas fa-globe"></i> Submit </button>
-                </div>
+              <div class="input-field col s7 m6">
+                <input placeholder="Enter Your Zipcode" id="zip" type="text" class="validate">
+              </div>
+              <div class="col s2 m6 submitDiv">
+                <button class="btn waves-effect waves-light z-depth-3" type="submit" name="action" id="submit"><i class="fas fa-globe"></i>
+                  Submit </button>
+              </div>
             </form>
 
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
     <!-- Collapsible Div for Concerts/Restaurants/Itinerary-->
-  <div class="row">
-    <div class="col s12 m10 offset-m1">
-      <ul class="collapsible z-depth-4">
-        <li>
-          <div class="collapsible-header" id="concerts-header"><i class="fas fa-guitar"></i>CONCERTS</div>
-          <div class="collapsible-body" id="concerts"><span></span></div>
-          <!-- "Add Concert" button?  Or do we want to just be able to click on the div? -K -->
-        </li>
-        <li>
-          <div class="collapsible-header" id="restaurants-header"><i class="fas fa-utensils"></i>RESTAURANTS</div>
-          <div class="collapsible-body" id="restaurants"><span></span></div>
-          <!-- "Add restaurant button?  Or do we want to just be able to click on the div? -K -->
-        </li>
-        <li>
-          <div class="collapsible-header"><i class="fas fa-clipboard-list"></i>ITINERARY</div>
-          <div class="collapsible-body">
-            <div id="concert-itinerary"></div>
-            <div id="food-itinerary"></div>
-          </div>
-        </li>
-      </ul>
+    <div class="row">
+      <div class="col s12 m10 offset-m1">
+        <ul class="collapsible z-depth-4">
+          <li>
+            <div class="collapsible-header" id="concerts-header"><i class="fas fa-guitar"></i>CONCERTS</div>
+            <div class="collapsible-body" id="concerts"><span></span></div>
+            <!-- "Add Concert" button?  Or do we want to just be able to click on the div? -K -->
+          </li>
+          <li>
+            <div class="collapsible-header" id="restaurants-header"><i class="fas fa-utensils"></i>RESTAURANTS</div>
+            <div class="collapsible-body" id="restaurants"><span></span></div>
+            <!-- "Add restaurant button?  Or do we want to just be able to click on the div? -K -->
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="fas fa-clipboard-list"></i>ITINERARY</div>
+            <div class="collapsible-body">
+              <div id="concert-itinerary"></div>
+              <div id="food-itinerary"></div>
+              <div id="map"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
 
-</main>
+  </main>
 
   <footer class="page-footer">
     <div class="container">
