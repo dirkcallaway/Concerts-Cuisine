@@ -17,6 +17,8 @@ $(document).ready(function () {
     var concertDetails = "";
     var concertCity = "";
     var concertLink = "";
+    var venueLat = "";
+    var venueLon = "";
 
 
     //Loading Maps ------------------------------------------------------------------------------------------
@@ -25,10 +27,13 @@ $(document).ready(function () {
         L.mapquest.key = 'h1AaSPSUGvuBlInfmGZQsZYqflUTxUri';
 
         var map = L.mapquest.map('map', {
-            center: [39.6659, -105.2045],
+            center: [venueLat, venueLon],
             layers: L.mapquest.tileLayer('map'),
-            zoom: 11
+            zoom: 14
         });
+
+        var marker = L.marker([venueLat, venueLon]).addTo(map);
+        marker.bindPopup("Venue").openPopup();
 
     };
 
@@ -65,6 +70,8 @@ $(document).ready(function () {
 
                             concertDetails = response.resultsPage.results.event[i].displayName;
                             concertCity = response.resultsPage.results.event[i].location.city;
+                            venueLat = response.resultsPage.results.event[i].location.lat;
+                            venueLon = response.resultsPage.results.event[i].location.lng;
 
 
                             //Adjust class name of concertCard to match color scheme
@@ -73,7 +80,7 @@ $(document).ready(function () {
 
                             var cardTitle = $("<span class='card-title' id='concertTitle'>").text(concertDetails); //Link to SongKick Band Name
 
-                            var cardCity = $("<p class='col s6 offset-s9'>").text(concertCity); //Link to SongKick City, State, Country
+                            var cardCity = $("<p class='col s6 offset-s6 offset-m9'>").text(concertCity); //Link to SongKick City, State, Country
 
                             concertLink = response.resultsPage.results.event[i].uri;
 
@@ -86,6 +93,8 @@ $(document).ready(function () {
                             cardContent.append(cardTitle);
                             cardContent.append(cardCity);
                             cardContent.append(cardLink);
+                            concertCard.attr("data-lat", venueLat);
+                            concertCard.attr("data-lon", venueLon);
                             concertCard.append(cardContent);
 
                             //Pushes finished card into the HTML
@@ -100,6 +109,11 @@ $(document).ready(function () {
                         $(".concert-click").on("click", function () {
                             $("#concert-itinerary").empty();
                             $(this).clone().appendTo("#concert-itinerary");
+                            venueLat = $(this).data("lat");
+                            console.log("Lat: " + venueLat);
+                            venueLon = $(this).data("lon");
+                            console.log("Lon: " + venueLon);
+                            populateRestaurants();
                             instance.open(1);
                         });
                     });
@@ -113,7 +127,7 @@ $(document).ready(function () {
     var populateRestaurants = function () {
 
         //restaurant query url
-        var foodQueryURL = "https://developers.zomato.com/api/v2.1/geocode?lat=" + lat + "&lon=" + lon + "&count=10";
+        var foodQueryURL = "https://developers.zomato.com/api/v2.1/geocode?lat=" + venueLat + "&lon=" + venueLon + "&count=10";
 
         //create ajax call
         $.ajax({
@@ -178,6 +192,7 @@ $(document).ready(function () {
                     $("#food-itinerary").empty();
                     $(this).clone().appendTo("#food-itinerary");
                     instance.open(2);
+                    loadMap();
                 });
             });
     };
@@ -206,7 +221,7 @@ $(document).ready(function () {
                 console.log("Lat: " + lat);
                 console.log("Lon: " + lon);
                 populateConcerts();
-                populateRestaurants();
+                // populateRestaurants();
             });
     };
 

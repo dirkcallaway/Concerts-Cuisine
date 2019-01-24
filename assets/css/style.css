@@ -169,3 +169,8 @@ p {
 .btn:hover {
     background-color: #76ff03;
  }
+
+#map {
+    height:200px;
+}
+
