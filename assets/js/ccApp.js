@@ -110,6 +110,7 @@ $(document).ready(function () {
                             console.log("Lat: " + venueLat);
                             venueLon = $(this).data("lon");
                             console.log("Lon: " + venueLon);
+                            populateRestaurants();
                             instance.open(1);
                         });
                     });
@@ -123,7 +124,7 @@ $(document).ready(function () {
     var populateRestaurants = function () {
 
         //restaurant query url
-        var foodQueryURL = "https://developers.zomato.com/api/v2.1/geocode?lat=" + lat + "&lon=" + lon + "&count=10";
+        var foodQueryURL = "https://developers.zomato.com/api/v2.1/geocode?lat=" + venueLat + "&lon=" + venueLon + "&count=10";
 
         //create ajax call
         $.ajax({
@@ -217,7 +218,7 @@ $(document).ready(function () {
                 console.log("Lat: " + lat);
                 console.log("Lon: " + lon);
                 populateConcerts();
-                populateRestaurants();
+                // populateRestaurants();
             });
     };
 
