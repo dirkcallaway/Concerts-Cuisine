@@ -80,7 +80,7 @@ $(document).ready(function () {
 
                             var cardTitle = $("<span class='card-title' id='concertTitle'>").text(concertDetails); //Link to SongKick Band Name
 
-                            var cardCity = $("<p class='col s6 offset-s9'>").text(concertCity); //Link to SongKick City, State, Country
+                            var cardCity = $("<p class='col s6 offset-s6 offset-m9'>").text(concertCity); //Link to SongKick City, State, Country
 
                             concertLink = response.resultsPage.results.event[i].uri;
 
