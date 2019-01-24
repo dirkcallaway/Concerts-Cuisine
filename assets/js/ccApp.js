@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    //Initialize Collapsibles
+    $('.collapsible').collapsible();
+
     //Collapsible Instance Variables
     var elem;
 
@@ -15,11 +18,6 @@ $(document).ready(function () {
     var concertCity = "";
     var concertLink = "";
 
-    //Initialize Collapsibles
-     $(document).ready(function () {
-        $('.collapsible').collapsible();
-      });
-      
 
     //Loading Maps ------------------------------------------------------------------------------------------
 
@@ -41,7 +39,7 @@ $(document).ready(function () {
     var populateConcerts = function () {
 
         var concertQueryUrl = "https://api.songkick.com/api/3.0/search/locations.json?location=geo:" + lat + "," + lon + "&apikey=" + apiKey
-        // console.log(concertQueryUrl);
+
 
         $.ajax({
                 url: concertQueryUrl,
@@ -49,13 +47,12 @@ $(document).ready(function () {
             })
 
             .then(function (response) {
-                // console.log(response);
+                console.log(response);
 
                 metroAreaId = response.resultsPage.results.location[0].metroArea.id;
                 console.log("Metro Area ID: " + metroAreaId);
 
                 var concertQueryUrlbyId = "https://api.songkick.com/api/3.0/metro_areas/" + metroAreaId + "/calendar.json?&apikey=" + apiKey
-                // console.log(concertQueryUrlbyId);
 
                 $.ajax({
                         url: concertQueryUrlbyId,
@@ -63,30 +60,26 @@ $(document).ready(function () {
                     })
 
                     .then(function (response) {
-                        // console.log(response);
 
                         for (var i = 0; i < 9; i++) {
 
                             concertDetails = response.resultsPage.results.event[i].displayName;
-                            // console.log("Details: " + concertDetails);
-
                             concertCity = response.resultsPage.results.event[i].location.city;
-                            // console.log("City, State: " + concertCity);
 
 
-                        //Adjust class name of concertCard to match color scheme
-                        var concertCard = $("<div class='card concert-click z-depth-4'>");
-                        var cardContent = $("<div class='card-content white-text' id='concertCard'>");
+                            //Adjust class name of concertCard to match color scheme
+                            var concertCard = $("<div class='card concert-click z-depth-4'>");
+                            var cardContent = $("<div class='card-content white-text' id='concertCard'>");
 
-                        var cardTitle = $("<span class='card-title' id='concertTitle'>").text(concertDetails); //Link to SongKick Band Name
+                            var cardTitle = $("<span class='card-title' id='concertTitle'>").text(concertDetails); //Link to SongKick Band Name
 
-                        var cardCity = $("<p class='col s6 offset-s9'>").text(concertCity); //Link to SongKick City, State, Country
+                            var cardCity = $("<p class='col s6 offset-s9'>").text(concertCity); //Link to SongKick City, State, Country
 
                             concertLink = response.resultsPage.results.event[i].uri;
-                            // console.log("Link: " + concertLink);
 
-                         var cardLink = $("<a target='_blank'>").text("Buy Tickets");
-                         cardLink.attr("href", concertLink); //Link to SongKick Website Link
+
+                            var cardLink = $("<a target='_blank'>").text("Buy Tickets");
+                            cardLink.attr("href", concertLink); //Link to SongKick Website Link
 
 
                             //Puts the card parts together
@@ -97,11 +90,11 @@ $(document).ready(function () {
 
                             //Pushes finished card into the HTML
                             $("#concerts").append(concertCard);
-                            //Need to remove old search when new zip submitted 
+
                         }
                         elem = document.querySelector('.collapsible');
 
-
+                        //triggers restaurant collapsible to open on concert div click
                         instance = M.Collapsible.getInstance(elem);
                         instance.open(0);
                         $(".concert-click").on("click", function () {
@@ -110,13 +103,11 @@ $(document).ready(function () {
                             instance.open(1);
                         });
                     });
-                });
-        
+            });
+
     };
 
     //Restaurants --------------------------------------------------------------------------------------------
-
-    //restaurants need to update with every new zipcode entry - currently they don't update
 
     //Populate Restaurant function calls the Zomato API and then buildes the restaurant cards into the HTHML
     var populateRestaurants = function () {
@@ -155,16 +146,15 @@ $(document).ready(function () {
                         ratingText: response.nearby_restaurants[i].restaurant.user_rating.rating_text,
                     }
 
-
                     //Retrieves restaurant data from object to populate card
-                    var restCard = $("<div class='card deep-purple lighten-1 rest-click'>");
-                    var restCardContent = $("<div class='card-content white-text'>");
-                    var restCardTitle = $("<span class='card-title'>").text(" " + restaurantData.name);
+                    var restCard = $("<div class='card rest-click z-depth-4'>");
+                    var restCardContent = $("<div class='card-content white-text' id='restCard'>");
+                    var restCardTitle = $("<span class='card-title' id='restTitle'>").text(" " + restaurantData.name);
                     var restAddress = $("<p>").text("Address: " + restaurantData.address);
                     var restType = $("<p>").text("" + restaurantData.type);
                     // var restMenuLink = $("<>").html("" + restaurantData.menu); //not essential RN but will make work if/when I can
                     // var restPrice = $("<p>").text("" + restaurantData.price); //not essential, would like to format differently
-                    var restRating = $("<p>").text("Customer Rating: " + restaurantData.rating);
+                    var restRating = $("<p id='custRating'>").text("Customer Rating: " + restaurantData.rating);
 
 
                     //Puts the card parts together
@@ -176,33 +166,13 @@ $(document).ready(function () {
                     restCardContent.append(restRating);
                     restCard.append(restCardContent);
 
+                    //Pushes finished card into the HTML
+                    $("#restaurants").append(restCard);
 
-                //Retrieves restaurant data from object to populate card
-                var restCard = $("<div class='card rest-click z-depth-4'>");
-                var restCardContent = $("<div class='card-content white-text' id='restCard'>");
-                var restCardTitle = $("<span class='card-title' id='restTitle'>").text(" " + restaurantData.name);
-                var restAddress = $("<p>").text("Address: " + restaurantData.address);
-                var restType = $("<p>").text("" + restaurantData.type);
-                // var restMenuLink = $("<>").html("" + restaurantData.menu); //not essential RN but will make work if/when I can
-                // var restPrice = $("<p>").text("" + restaurantData.price); //not essential, would like to format differently
-                var restRating = $("<p id='custRating'>").text("Customer Rating: " + restaurantData.rating);
-
-
-                //Puts the card parts together
-                restCardContent.append(restCardTitle);
-                restCardContent.append(restAddress);
-                restCardContent.append(restType);
-                // restCardContent.append(restMenuLink);
-                // restCardContent.append(restPrice);
-                restCardContent.append(restRating);
-                restCard.append(restCardContent);
-
-                //Pushes finished card into the HTML
-                $("#restaurants").append(restCard);
-
-            }
+                }
                 elem = document.querySelector('.collapsible');
 
+                //triggers itinerary collapsible to open on rest div click
                 instance = M.Collapsible.getInstance(elem);
                 $(".rest-click").on("click", function () {
                     $("#food-itinerary").empty();
@@ -211,77 +181,78 @@ $(document).ready(function () {
                 });
             });
     };
-//             $(".rest-click").on("click", function () {
-//                 $("#food-itinerary").empty();
-//                 $(this).clone().appendTo("#food-itinerary");
-//             });
-
-//Geocoding ----------------------------------------------------------------------------------------------
-var mapQueryUrl = "https://www.mapquestapi.com/geocoding/v1/address?";
-var mapSearchObject = {
-    key: "h1AaSPSUGvuBlInfmGZQsZYqflUTxUri",
-    location: ""
-};
-var lat;
-var lon;
-
-var ajaxCall = function () {
-    $.ajax({
-            url: mapQueryUrl,
-            method: "GET"
-        })
-
-        .then(function (response) {
-            console.log(response);
-            lat = response.results[0].locations[0].latLng.lat;
-            // console.log(response.results[0].locations.latLng.lat);
-            lon = response.results[0].locations[0].latLng.lng;
-            // console.log(response.results[0].locations.latLng.lng);
-            console.log("Lat: " + lat);
-            console.log("Lon: " + lon);
-            populateConcerts();
-            populateRestaurants();
-        });
-};
-
-//Clear concert & restaurant divs at new call function
-
-function clearConcerts() {
-    $("#concerts").empty();
-
-};
-
-function clearRestaurants() {
-    $("#restaurants").empty();
-};
-
-//Calls -----------------------------------------------------------------------------------------------
 
 
-//Submit Button Click...
-$("#submit").on("click", function (event) {
-    event.preventDefault();
-    clearConcerts();
-    clearRestaurants();
-    //Grabs Value from input box
-    var zipCode = $("#zip").val().trim();
-    //Checks length of input... is it 5 long
-    if (zipCode.length > 5 || zipCode.length < 5) {
-        //Alerts if more or less than 5 long
-        M.toast({html: 'Invalid Zipcode', classes:'rounded white-text red lighten-2',});
-    } else {
-        //Sets the location in the mapSearchObject
-        mapSearchObject.location = zipCode;
-    }
-    //Updates the mapQueryUrl
-    mapQueryUrl = "https://www.mapquestapi.com/geocoding/v1/address?" + $.param(mapSearchObject);
+    //Geocoding ----------------------------------------------------------------------------------------------
+    
+    var mapQueryUrl = "https://www.mapquestapi.com/geocoding/v1/address?";
+    var mapSearchObject = {
+        key: "h1AaSPSUGvuBlInfmGZQsZYqflUTxUri",
+        location: ""
+    };
+    var lat;
+    var lon;
 
-    console.log("new: ", mapQueryUrl);
-    //Resets the zip input box
-    $("#zip").val("");
-    //Calls the MapQuest API
-    console.log(zipCode);
-    ajaxCall();
+    var ajaxCall = function () {
+        $.ajax({
+                url: mapQueryUrl,
+                method: "GET"
+            })
+
+            .then(function (response) {
+                console.log(response);
+                lat = response.results[0].locations[0].latLng.lat;
+                lon = response.results[0].locations[0].latLng.lng;
+                console.log("Lat: " + lat);
+                console.log("Lon: " + lon);
+                populateConcerts();
+                populateRestaurants();
+            });
+    };
+
+    //Clear concert & restaurant divs at new call function
+    function clearConcerts() {
+        $("#concerts").empty();
+
+    };
+
+    function clearRestaurants() {
+        $("#restaurants").empty();
+    };
+
+
+    //Calls -----------------------------------------------------------------------------------------------
+
+
+    //Submit Button Click...
+    $("#submit").on("click", function (event) {
+        event.preventDefault();
+        clearConcerts();
+        clearRestaurants();
+
+        //Grabs Value from input box
+        var zipCode = $("#zip").val().trim();
+
+        //Checks length of input... is it 5 long
+        if (zipCode.length > 5 || zipCode.length < 5) {
+            M.toast({
+                html: 'Invalid Zipcode',
+                classes: 'rounded white-text red lighten-2',
+            });
+        } else {
+            //Sets the location in the mapSearchObject
+            mapSearchObject.location = zipCode;
+        }
+
+        //Updates the mapQueryUrl
+        mapQueryUrl = "https://www.mapquestapi.com/geocoding/v1/address?" + $.param(mapSearchObject);
+
+        //Resets the zip input box
+        $("#zip").val("");
+
+        //Calls the MapQuest API
+        console.log(zipCode);
+        ajaxCall();
 
     });
 
