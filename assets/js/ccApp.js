@@ -32,6 +32,8 @@ $(document).ready(function () {
             zoom: 14
         });
 
+        var marker = L.marker([venueLat, venueLon]).addTo(map);
+        marker.bindPopup("Venue").openPopup();
 
     };
 
