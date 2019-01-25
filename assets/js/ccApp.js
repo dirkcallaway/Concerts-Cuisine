@@ -68,18 +68,34 @@ $(document).ready(function () {
 
                         for (var i = 0; i < 9; i++) {
 
-                            concertDetails = response.resultsPage.results.event[i].displayName;
+                            // concertDetails = response.resultsPage.results.event[i].displayName;
+                            concertArtist = response.resultsPage.results.event[i].performance[0].artist.displayName;
+                            concertVenue = response.resultsPage.results.event[i].venue.displayName;
+                            concertDate = response.resultsPage.results.event[i].start.date;
+                            concertTime = response.resultsPage.results.event[i].start.time;
                             concertCity = response.resultsPage.results.event[i].location.city;
                             venueLat = response.resultsPage.results.event[i].location.lat;
                             venueLon = response.resultsPage.results.event[i].location.lng;
 
+                            //format concert date to mm/dd/yy format
+                            var dateFormat = "YYYY-MM-DD";
+                            var convertedDate = moment(concertDate, dateFormat);
+                            var prettyDate = convertedDate.format("MM/DD/YY");
+
+                            //format time from military to am/pm
+                            var timeFormat = "HH:mm:ss";
+                            var convertedTime = moment(concertTime, timeFormat);
+                            var prettyTime = convertedTime.format("hh:mm a");
 
                             //Adjust class name of concertCard to match color scheme
                             var concertCard = $("<div class='card concert-click z-depth-4'>");
                             var cardContent = $("<div class='card-content white-text' id='concertCard'>");
 
-                            var cardTitle = $("<span class='card-title' id='concertTitle'>").text(concertDetails); //Link to SongKick Band Name
-
+                            // var cardTitle = $("<span class='card-title' id='concertTitle'>").text(concertDetails); //Link to SongKick Band Name
+                            var cardTitle = $("<span class='card-title' id='concertTitle'>").text(concertArtist);
+                            var cardVenue = $("<p class='card-content' id='concertVenue'>").text(concertVenue);
+                            var cardDate = $("<p class='card-content' id='concertDate'>").text(prettyDate);
+                            var cardTime = $("<p class='card-content' id='concertTime'>").text(prettyTime);
                             var cardCity = $("<p class='col s6 offset-s6 offset-m9'>").text(concertCity); //Link to SongKick City, State, Country
 
                             concertLink = response.resultsPage.results.event[i].uri;
@@ -92,8 +108,8 @@ $(document).ready(function () {
 
                             //Puts the card parts together
                             cardContent.append(cardTitle);
-                            cardContent.append(cardCity);
-                            // cardContent.append(cardLink);
+                            cardContent.append(cardVenue, cardDate, cardTime, cardCity);
+
                             concertCard.attr("data-lat", venueLat);
                             concertCard.attr("data-lon", venueLon);
                             concertCard.append(cardContent);
@@ -256,7 +272,7 @@ $(document).ready(function () {
         //Checks length of input... is it 5 long
         if (zipCode.length > 5 || zipCode.length < 5) {
             M.toast({
-                html: 'Invalid Zipcode',
+                html: 'Invalid Zip Code',
                 classes: 'rounded white-text red lighten-2',
             });
         } else {
