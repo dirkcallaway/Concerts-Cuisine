@@ -93,18 +93,19 @@ $(document).ready(function () {
 
                             // var cardTitle = $("<span class='card-title' id='concertTitle'>").text(concertDetails); //Link to SongKick Band Name
                             var cardTitle = $("<span class='card-title' id='concertTitle'>").text(concertArtist);
-                            var cardVenue = $("<p class='card-content' id='concertVenue'>").text(concertVenue);
-                            var cardDate = $("<p class='card-content' id='concertDate'>").text(prettyDate);
-                            var cardTime = $("<p class='card-content' id='concertTime'>").text(prettyTime);
+                            var cardVenue = $("<p id='concertVenue'>").text(concertVenue);
+                            var cardDate = $("<p id='concertDate'>").text(prettyDate);
+                            var cardTime = $("<p id='concertTime'>").text(prettyTime);
                             var cardCity = $("<p class='col s6 offset-s6 offset-m9'>").text(concertCity); //Link to SongKick City, State, Country
 
-                            concertLink = response.resultsPage.results.event[i].uri;
+                            var concertLink = response.resultsPage.results.event[i].uri;
+
+                            if (concertVenue === 
                             
                             //No longer need this (buy tix button live) but JIC...
                             // var cardLink = concertLink;
                             // var cardLink = $("<a target='_blank'>").text("Buy Tickets");
                             // cardLink.attr("href", concertLink); //Link to SongKick Website Link
-
 
                             //Puts the card parts together
                             cardContent.append(cardTitle);
@@ -125,8 +126,8 @@ $(document).ready(function () {
                         instance.open(0);
                         $(".concert-click").on("click", function () {
                             $("#concert-itinerary").empty();
-                            $("#tixBtn").attr("href", concertLink);
                             $(this).clone().appendTo("#concert-itinerary");
+                            $("#tixBtn").attr("href", concertLink);
                             venueLat = $(this).data("lat");
                             console.log("Lat: " + venueLat);
                             venueLon = $(this).data("lon");
@@ -210,8 +211,8 @@ $(document).ready(function () {
                 instance = M.Collapsible.getInstance(elem);
                 $(".rest-click").on("click", function () {
                     $("#food-itinerary").empty();
-                    $("#restBtn").attr("href", restaurantData.link);
                     $(this).clone().appendTo("#food-itinerary");
+                    $("#restBtn").attr("href", restaurantData.link);
                     instance.open(2);
                     loadMap();
                 });
