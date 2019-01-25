@@ -99,8 +99,6 @@ $(document).ready(function () {
                             var cardCity = $("<p class='col s6 offset-s6 offset-m9'>").text(concertCity); //Link to SongKick City, State, Country
 
                             var concertLink = response.resultsPage.results.event[i].uri;
-
-                            if (concertVenue === 
                             
                             //No longer need this (buy tix button live) but JIC...
                             // var cardLink = concertLink;
