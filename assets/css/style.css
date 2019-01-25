@@ -60,6 +60,8 @@ img {
 
 p {
     font-family: 'Raleway', sans-serif;
+    margin: 0px;
+    padding: 5px;
 }
 
 .card {
