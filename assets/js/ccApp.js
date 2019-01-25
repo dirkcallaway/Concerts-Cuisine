@@ -76,6 +76,7 @@ $(document).ready(function () {
                             concertCity = response.resultsPage.results.event[i].location.city;
                             venueLat = response.resultsPage.results.event[i].location.lat;
                             venueLon = response.resultsPage.results.event[i].location.lng;
+                            concertLink = response.resultsPage.results.event[i].uri;
 
                             //format concert date to mm/dd/yy format
                             var dateFormat = "YYYY-MM-DD";
@@ -98,7 +99,7 @@ $(document).ready(function () {
                             var cardTime = $("<p id='concertTime'>").text(prettyTime);
                             var cardCity = $("<p class='col s6 offset-s6 offset-m9'>").text(concertCity); //Link to SongKick City, State, Country
 
-                            var concertLink = response.resultsPage.results.event[i].uri;
+                            
                             
                             //No longer need this (buy tix button live) but JIC...
                             // var cardLink = concertLink;
@@ -111,6 +112,7 @@ $(document).ready(function () {
 
                             concertCard.attr("data-lat", venueLat);
                             concertCard.attr("data-lon", venueLon);
+                            concertCard.attr("data-href", concertLink);
                             concertCard.append(cardContent);
 
                             //Pushes finished card into the HTML
@@ -125,7 +127,11 @@ $(document).ready(function () {
                         $(".concert-click").on("click", function () {
                             $("#concert-itinerary").empty();
                             $(this).clone().appendTo("#concert-itinerary");
+                            
+                            //assign concert link to buy tix button in itinerary
+                            concertLink = $(this).data("href");
                             $("#tixBtn").attr("href", concertLink);
+
                             venueLat = $(this).data("lat");
                             console.log("Lat: " + venueLat);
                             venueLon = $(this).data("lon");
@@ -177,7 +183,7 @@ $(document).ready(function () {
                         ratingText: response.nearby_restaurants[i].restaurant.user_rating.rating_text,
                     }
 
-                    console.log(restaurantData);
+                    var restLink = restaurantData.link;
 
                     //Retrieves restaurant data from object to populate card
                     var restCard = $("<div class='card rest-click z-depth-4'>");
@@ -198,6 +204,7 @@ $(document).ready(function () {
                     // restCardContent.append(restPrice);
                     restCardContent.append(restRating);
                     restCard.append(restCardContent);
+                    restCard.attr("data-href", restLink);
 
                     //Pushes finished card into the HTML
                     $("#restaurants").append(restCard);
@@ -210,7 +217,11 @@ $(document).ready(function () {
                 $(".rest-click").on("click", function () {
                     $("#food-itinerary").empty();
                     $(this).clone().appendTo("#food-itinerary");
-                    $("#restBtn").attr("href", restaurantData.link);
+
+                    //assign restaurant link to make reservations button in itinerary
+                    restLink = $(this).data("href");
+                    $("#restBtn").attr("href", restLink);
+
                     instance.open(2);
                     loadMap();
                 });
