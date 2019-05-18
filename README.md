@@ -1,24 +1,27 @@
 # Group4-Project
 
-*Concerts & Cuisine*
+## *Concerts & Cuisine*
   -Your Easy Street to a perfect night of music and local eats!
 
-This application allows users to search an area by zip code for nearby upcoming concerts.
-  Each search displays the 10 most relevant concerts.
-    *Information for each show include: Artist, Venue, Date, City/State, and Link to Buy Tickets 
+## Overview
+Concerts & Cuisine is a simple web application that is built to make finding a night out with food and music a snap.  Simply enter your zip code and it will search your location for concerts nearby.  Once you pick the show you want it will then find restaurants near the venue.  Pick the perfect spot and you are shown your itinerary where you can quickly buy tickets to the show and make reservations.
 
-Once a concert is selected (and automatically dropped into the Itinerary), a list of local restaurants will populate.
-  Users can scan through 10 nearby local restaurants. 
-    *Information for each eatery include: Name, Address, Category of Cuisine, and Customer Rating
-User selects a restaurant of choice to automatically update their Itinerary
+## Main Page
+![alt text](./screens/mainPage.png "Main Page")
 
-Itinerary is viewable to user for review. Changes may be made if desired. 
-User may opt to purchase tickets by clicking a link directing them to the Songkick website.
+## Concert Search
+![alt text](./screens/concerts.png "Concert Page")
 
-**This site is powered by MapQuest, Songkick, & Zomato APIs
+## Restaurant Search
+![alt text](./screens/restaurants.png "Restaurant Page")
+
+## Itinerary
+![alt text](./screens/itinerary.png "Itinerary Page")
+
+##### This site is powered by MapQuest, Songkick, & Zomato APIs
 
 
-**Future pending updates: 
+### Future pending updates: 
     Link or contact to make reservation through restaurant
     Filter for band name, genre, venue
     Filter for restaurant type, price, etc.
